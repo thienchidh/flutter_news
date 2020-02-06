@@ -7,14 +7,28 @@ import 'package:meta/meta.dart';
 @immutable
 class NewsPageState {
   final NewsPageModel model;
+  final bool isLoading;
+  final bool isError;
+  final Error error;
 
   NewsPageState({
     @required this.model,
+    this.isLoading = false,
+    this.isError = false,
+    this.error,
   });
 
-  NewsPageState copyOf({NewsPageModel model}) {
+  NewsPageState copyOf({
+    NewsPageModel model,
+    bool isLoading,
+    bool isError,
+    Error error,
+  }) {
     return NewsPageState(
       model: model ?? this.model,
+      error: error ?? this.error,
+      isError: isError ?? this.isError,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 

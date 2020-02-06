@@ -7,14 +7,28 @@ import 'package:meta/meta.dart';
 @immutable
 class VideoPageState {
   final VideoPageModel model;
+  final bool isLoading;
+  final bool isError;
+  final Error error;
 
   VideoPageState({
     @required this.model,
+    this.isLoading = false,
+    this.isError = false,
+    this.error,
   });
 
-  VideoPageState copyOf({model}) {
+  VideoPageState copyOf({
+    VideoPageState model,
+    bool isLoading,
+    bool isError,
+    Error error,
+  }) {
     return VideoPageState(
       model: model ?? this.model,
+      error: error ?? this.error,
+      isError: isError ?? this.isError,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 
@@ -23,10 +37,14 @@ class VideoPageState {
       identical(this, other) ||
       other is VideoPageState &&
           runtimeType == other.runtimeType &&
-          model == other.model;
+          model == other.model &&
+          isLoading == other.isLoading &&
+          isError == other.isError &&
+          error == other.error;
 
   @override
-  int get hashCode => model.hashCode;
+  int get hashCode =>
+      model.hashCode ^ isLoading.hashCode ^ isError.hashCode ^ error.hashCode;
 
   static VideoPageState initialize() {
     return VideoPageState(

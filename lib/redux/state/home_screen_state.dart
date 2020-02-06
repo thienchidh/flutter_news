@@ -2,8 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_news/model/home_screen_model.dart';
-import 'package:flutter_news/view/widgets/news_page.dart';
-import 'package:flutter_news/view/widgets/video_page.dart';
+import 'package:flutter_news/view/page/news_page.dart';
+import 'package:flutter_news/view/page/video_page.dart';
 import 'package:meta/meta.dart';
 
 @immutable

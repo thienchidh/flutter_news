@@ -12,6 +12,7 @@ class NewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: onClick,
       child: Card(
@@ -27,6 +28,7 @@ class NewsItem extends StatelessWidget {
                   child: Image.network(
                     model.linkImage,
                     fit: BoxFit.cover,
+                    height: screenHeight / 5,
                   ),
                 ),
               ),
