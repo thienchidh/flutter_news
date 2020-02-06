@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/store/store.dart';
-import 'package:flutter_news/view/pages/news_page.dart';
-import 'package:flutter_news/view/screens/detail_screen/detail_screen.dart';
+import 'package:flutter_news/redux/state/app_state.dart';
+import 'package:flutter_news/redux/store/store.dart';
 import 'package:flutter_news/view/screens/home_screen/home_screen.dart';
+import 'package:flutter_news/view/widgets/news_page.dart';
+import 'package:flutter_news/view/widgets/video_item.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 void main() => runApp(
-      StoreProvider<dynamic>(
-        child: Application(),
+      StoreProvider<AppState>(
         store: store,
+        child: Application(),
       ),
     );
 
@@ -21,7 +22,7 @@ class Application extends StatelessWidget {
       routes: {
         RoutesName.HOME_PAGE: (context) => HomeScreen(),
         RoutesName.NEWS_PAGE: (context) => NewsPage(),
-        RoutesName.DETAIL_NEWS_PAGE: (context) => DetailScreen(),
+        RoutesName.DETAIL_NEWS_PAGE: (context) => VideoItem(),
       },
     );
   }

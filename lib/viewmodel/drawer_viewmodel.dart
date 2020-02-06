@@ -1,39 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/main.dart';
-import 'package:flutter_news/model/DrawerModel.dart';
+import 'package:flutter_news/model/drawer_model.dart';
+import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:meta/meta.dart';
+import 'package:redux/redux.dart';
 
 @immutable
 class DrawerViewModel {
-  final DrawerHeaderModel header;
-  final List<DrawerBodyModel> items;
+  final DrawerModel drawerModel;
 
-  DrawerViewModel({
-    @required this.header,
-    @required this.items,
-  });
+  DrawerViewModel({@required this.drawerModel});
 
-  static DrawerViewModel defaultValue() {
+  static DrawerViewModel fromStore(Store<AppState> store) {
     return DrawerViewModel(
-      header: DrawerHeaderModel(title: "Title of header"),
-      items: <DrawerBodyModel>[
-        DrawerBodyModel(
-          icon: Icon(Icons.add),
-          title: "home page",
-          routeName: RoutesName.HOME_PAGE,
-        ),
-        DrawerBodyModel(
-          icon: Icon(Icons.add),
-          title: "news page",
-          routeName: RoutesName.NEWS_PAGE,
-        ),
-        DrawerBodyModel(
-          icon: Icon(Icons.add),
-          title: "Detail page",
-          routeName: RoutesName.DETAIL_NEWS_PAGE,
-        ),
-      ],
+      drawerModel: store.state.drawerState.model,
     );
   }
 }

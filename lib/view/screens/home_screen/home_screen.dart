@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/view/screens/home_screen/home_screen_viewmodel.dart';
-import 'package:flutter_news/view/widgets/drawer.dart';
+import 'package:flutter_news/redux/state/app_state.dart';
+import 'package:flutter_news/view/widgets/common_drawer.dart';
+import 'package:flutter_news/viewmodel/home_screen_viewmodel.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
@@ -8,34 +9,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector(
-      converter: (Store store) {
-        return HomeScreenViewModel.fromStore(store);
-      },
+      converter: (Store<AppState> store) =>
+          HomeScreenViewModel.fromStore(store),
       builder: (BuildContext context, HomeScreenViewModel viewModel) {
-        final pagesViewModel = viewModel.pagesViewModel;
-        final title = viewModel.title;
-        final drawerViewModel = viewModel.drawerViewModel;
-
         return DefaultTabController(
-          length: pagesViewModel.length,
+          length: viewModel.screenModel.pagesModel.length,
           child: Scaffold(
-            drawer: CommonDrawer(
-              drawerViewModel: drawerViewModel,
-            ),
+            drawer: CommonDrawer(),
             appBar: AppBar(
-              title: Text(title),
+              title: Text(viewModel.screenModel.title),
               bottom: TabBar(
                 tabs: [
-                  ...pagesViewModel.map((pageViewModel) => Tab(
-                        icon: pageViewModel.icon,
-                        text: pageViewModel.title,
-                      )),
+                  ...viewModel.screenModel.pagesModel
+                      .map((pageViewModel) => Tab(
+                            icon: pageViewModel.icon,
+                            text: pageViewModel.title,
+                          )),
                 ],
               ),
             ),
             body: TabBarView(
               children: [
-                ...pagesViewModel.map((pageViewModel) => pageViewModel.page),
+                ...viewModel.screenModel.pagesModel
+                    .map((pageViewModel) => pageViewModel.page),
               ],
             ),
           ),
