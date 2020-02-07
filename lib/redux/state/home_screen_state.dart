@@ -9,19 +9,23 @@ import 'package:meta/meta.dart';
 @immutable
 class HomeScreenState {
   final HomeScreenModel model;
+  final void Function() backToTop;
 
   HomeScreenState({
     @required this.model,
+    @required this.backToTop,
   });
 
-  HomeScreenState copyOf({model}) {
+  HomeScreenState copyOf({HomeScreenModel model, void Function() backToTop}) {
     return HomeScreenState(
       model: model ?? this.model,
+      backToTop: backToTop ?? this.backToTop,
     );
   }
 
   static initialize() {
     return HomeScreenState(
+      backToTop: () {},
       model: HomeScreenModel(
         title: "Home Page",
         pagesModel: UnmodifiableListView<PageModel>([

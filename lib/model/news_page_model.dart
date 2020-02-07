@@ -5,26 +5,20 @@ import 'package:flutter_news/model/news_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class NewsPageModel extends LoadMoreModel {
-  final String title;
-  final UnmodifiableListView<NewsModel> listNewsModel;
-
+class NewsPageModel extends LoadMoreModel<NewsModel> {
   NewsPageModel({
-    @required this.title,
-    @required this.listNewsModel,
-    isReachedItem = false,
-    nextIndex = 0,
-  }) : super(isReachedItem: isReachedItem, nextIndex: nextIndex);
+    @required UnmodifiableListView<NewsModel> data,
+    bool isReachedItem = false,
+    int nextIndex = 0,
+  }) : super(isReachedItem: isReachedItem, nextIndex: nextIndex, data: data);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
           other is NewsPageModel &&
-          runtimeType == other.runtimeType &&
-          title == other.title &&
-          listNewsModel == other.listNewsModel;
+          runtimeType == other.runtimeType;
 
   @override
-  int get hashCode => super.hashCode ^ title.hashCode ^ listNewsModel.hashCode;
+  int get hashCode => super.hashCode;
 }

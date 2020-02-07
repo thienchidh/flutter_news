@@ -62,12 +62,12 @@ class DrawerBodyModel {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is DrawerBodyModel &&
-              runtimeType == other.runtimeType &&
-              title == other.title &&
-              routeName == other.routeName &&
-              icon == other.icon &&
-              arguments == other.arguments;
+      other is DrawerBodyModel &&
+          runtimeType == other.runtimeType &&
+          title == other.title &&
+          routeName == other.routeName &&
+          icon == other.icon &&
+          arguments == other.arguments;
 
   @override
   int get hashCode =>

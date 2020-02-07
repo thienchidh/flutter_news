@@ -1,10 +1,12 @@
+import 'dart:collection';
+
 import 'package:meta/meta.dart';
 
-abstract class LoadMoreModel {
+abstract class ConfigModel {
   final int nextIndex;
   final bool isReachedItem;
 
-  LoadMoreModel({
+  ConfigModel({
     @required this.isReachedItem,
     @required this.nextIndex,
   });
@@ -12,11 +14,22 @@ abstract class LoadMoreModel {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LoadMoreModel &&
+      other is ConfigModel &&
           runtimeType == other.runtimeType &&
           nextIndex == other.nextIndex &&
           isReachedItem == other.isReachedItem;
 
   @override
   int get hashCode => nextIndex.hashCode ^ isReachedItem.hashCode;
+}
+
+@immutable
+abstract class LoadMoreModel<T> extends ConfigModel {
+  final UnmodifiableListView<T> data;
+
+  LoadMoreModel({
+    @required bool isReachedItem,
+    @required int nextIndex,
+    @required this.data,
+  }) : super(isReachedItem: isReachedItem, nextIndex: nextIndex);
 }

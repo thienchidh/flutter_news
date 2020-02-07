@@ -13,24 +13,30 @@ class HomeScreen extends StatelessWidget {
           HomeScreenViewModel.fromStore(store),
       builder: (BuildContext context, HomeScreenViewModel viewModel) {
         return DefaultTabController(
-          length: viewModel.screenModel.pagesModel.length,
+          length: viewModel.pagesModel.length,
           child: Scaffold(
+            floatingActionButton: FloatingActionButton(
+              onPressed: viewModel.backToTop,
+              child: Icon(Icons.keyboard_arrow_up),
+              mini: true,
+              isExtended: true,
+            ),
             drawer: CommonDrawer(),
             appBar: AppBar(
-              title: Text(viewModel.screenModel.title),
+              title: Text(viewModel.title),
               bottom: TabBar(
+                isScrollable: true,
                 tabs: [
-                  ...viewModel.screenModel.pagesModel
-                      .map((pageViewModel) => Tab(
-                            icon: pageViewModel.icon,
-                            text: pageViewModel.title,
-                          )),
+                  ...viewModel.pagesModel.map((pageModel) => Tab(
+                        icon: pageModel.icon,
+                        text: pageModel.title,
+                      )),
                 ],
               ),
             ),
             body: TabBarView(
               children: [
-                ...viewModel.screenModel.pagesModel
+                ...viewModel.pagesModel
                     .map((pageViewModel) => pageViewModel.page),
               ],
             ),

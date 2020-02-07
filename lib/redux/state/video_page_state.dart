@@ -6,29 +6,41 @@ import 'package:meta/meta.dart';
 
 @immutable
 class VideoPageState {
+  final String title;
   final VideoPageModel model;
   final bool isLoading;
   final bool isError;
   final Error error;
+  final double currentScrollOffset;
+  final void Function() backToTop;
 
   VideoPageState({
+    @required this.title,
     @required this.model,
+    @required this.backToTop,
     this.isLoading = false,
     this.isError = false,
     this.error,
+    this.currentScrollOffset = 0,
   });
 
   VideoPageState copyOf({
+    String title,
     VideoPageState model,
     bool isLoading,
     bool isError,
     Error error,
+    double currentScrollOffset,
+    void Function() backToTop,
   }) {
     return VideoPageState(
+      title: title ?? this.title,
       model: model ?? this.model,
       error: error ?? this.error,
       isError: isError ?? this.isError,
       isLoading: isLoading ?? this.isLoading,
+      currentScrollOffset: currentScrollOffset ?? this.currentScrollOffset,
+      backToTop: backToTop ?? this.backToTop,
     );
   }
 
@@ -37,20 +49,28 @@ class VideoPageState {
       identical(this, other) ||
       other is VideoPageState &&
           runtimeType == other.runtimeType &&
+          title == other.title &&
           model == other.model &&
           isLoading == other.isLoading &&
           isError == other.isError &&
-          error == other.error;
+          error == other.error &&
+          currentScrollOffset == other.currentScrollOffset;
 
   @override
   int get hashCode =>
-      model.hashCode ^ isLoading.hashCode ^ isError.hashCode ^ error.hashCode;
+      title.hashCode ^
+      model.hashCode ^
+      isLoading.hashCode ^
+      isError.hashCode ^
+      error.hashCode ^
+      currentScrollOffset.hashCode;
 
   static VideoPageState initialize() {
     return VideoPageState(
+      backToTop: () {},
+      title: "Video Page",
       model: VideoPageModel(
-        title: "Video Page",
-        listVideoModel: UnmodifiableListView<VideoModel>([
+        data: UnmodifiableListView<VideoModel>([
           // TODO empty list
           VideoModel(
             title: '1',

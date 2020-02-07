@@ -1,30 +1,22 @@
-import 'dart:collection';
-
 import 'package:flutter_news/model/load_more_model.dart';
 import 'package:flutter_news/model/video_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class VideoPageModel extends LoadMoreModel {
-  final String title;
-  final UnmodifiableListView<VideoModel> listVideoModel;
-
+class VideoPageModel extends LoadMoreModel<VideoModel> {
   VideoPageModel({
-    @required this.title,
-    @required this.listVideoModel,
+    @required data,
     isReachedItem = false,
     nextIndex = 0,
-  }) : super(isReachedItem: isReachedItem, nextIndex: nextIndex);
+  }) : super(isReachedItem: isReachedItem, nextIndex: nextIndex, data: data);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
           other is VideoPageModel &&
-          runtimeType == other.runtimeType &&
-          title == other.title &&
-          listVideoModel == other.listVideoModel;
+          runtimeType == other.runtimeType;
 
   @override
-  int get hashCode => super.hashCode ^ title.hashCode ^ listVideoModel.hashCode;
+  int get hashCode => super.hashCode;
 }

@@ -6,37 +6,49 @@ import 'package:meta/meta.dart';
 
 @immutable
 class NewsPageState {
+  final String title;
   final NewsPageModel model;
   final bool isLoading;
   final bool isError;
   final Error error;
+  final double currentScrollOffset;
+  final void Function() backToTop;
 
   NewsPageState({
+    @required this.title,
     @required this.model,
+    @required this.backToTop,
     this.isLoading = false,
     this.isError = false,
     this.error,
+    this.currentScrollOffset = 0,
   });
 
   NewsPageState copyOf({
+    String title,
     NewsPageModel model,
     bool isLoading,
     bool isError,
     Error error,
+    double currentScrollOffset,
+    void Function() backToTop,
   }) {
     return NewsPageState(
-      model: model ?? this.model,
-      error: error ?? this.error,
-      isError: isError ?? this.isError,
-      isLoading: isLoading ?? this.isLoading,
-    );
+        title: title ?? this.title,
+        model: model ?? this.model,
+        error: error ?? this.error,
+        isError: isError ?? this.isError,
+        isLoading: isLoading ?? this.isLoading,
+        currentScrollOffset: currentScrollOffset ?? this.currentScrollOffset,
+        backToTop: backToTop ?? this.backToTop);
   }
 
   static NewsPageState initialize() {
     return NewsPageState(
+      backToTop: () {},
+      title: "News",
       model: NewsPageModel(
-        title: "News",
-        listNewsModel: UnmodifiableListView<NewsModel>([
+        data: UnmodifiableListView<NewsModel>([
           NewsModel(
             title: "1",
             linkImage:

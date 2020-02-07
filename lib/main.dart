@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/redux/store/store.dart';
-import 'package:flutter_news/view/screens/home_screen/home_screen.dart';
 import 'package:flutter_news/view/page/news_page.dart';
+import 'package:flutter_news/view/screens/home_screen.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 void main() => runApp(
@@ -16,7 +16,6 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       initialRoute: RoutesName.HOME_PAGE,
       routes: {
         RoutesName.HOME_PAGE: (context) => HomeScreen(),

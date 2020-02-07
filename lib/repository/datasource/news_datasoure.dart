@@ -4,8 +4,17 @@ import 'package:flutter_news/model/news_model.dart';
 import 'package:flutter_news/repository/datasource/datasource.dart';
 
 class NewsDataSource implements DataSource<MyResponse<NewsModel>> {
+  static NewsDataSource _instance = NewsDataSource._();
+
+  NewsDataSource._();
+
+  // singleton
+  factory NewsDataSource() {
+    return _instance;
+  }
+
   @override
-  Future<MyResponse<NewsModel>> fetchData(LoadMoreModel config,
+  Future<MyResponse<NewsModel>> fetchData(ConfigModel config,
       {optional}) async {
     // TODO: implement fetchData
 

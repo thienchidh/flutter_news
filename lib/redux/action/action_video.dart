@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 
 @immutable
 class ActionVideoLoadMore {
-  final LoadMoreModel configModel;
+  final ConfigModel configModel;
 
   ActionVideoLoadMore(this.configModel);
 }
@@ -12,13 +12,19 @@ class ActionVideoLoadMore {
 class ActionVideoLoadMoreSuccess extends ActionVideoLoadMore {
   final VideoPageModel data;
 
-  ActionVideoLoadMoreSuccess(LoadMoreModel configModel, this.data)
-      : super(configModel);
+  ActionVideoLoadMoreSuccess(this.data) : super(data);
 }
 
 class ActionVideoLoadMoreError extends ActionVideoLoadMore {
   final Error error;
 
-  ActionVideoLoadMoreError(LoadMoreModel configModel, this.error)
+  ActionVideoLoadMoreError(ConfigModel configModel, this.error)
       : super(configModel);
+}
+
+@immutable
+class ActionChangeVideoListViewPosition {
+  final double pixel;
+
+  ActionChangeVideoListViewPosition(this.pixel);
 }
