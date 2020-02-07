@@ -33,13 +33,15 @@ class _LoadMorePageState<ModelType,
   @override
   Widget build(BuildContext context) {
     return StoreConnector(
-      onInit: (store) {
+      onInit: (store) async {
         final viewModel = widget.createViewModel(store);
+        viewModel.bindBackToTopFunc(_backToTop);
+
         controller = ScrollController(
           initialScrollOffset: viewModel.currentScrollOffset,
         );
       },
-      onDispose: (store) {
+      onDispose: (store) async {
         controller.dispose();
       },
       converter: (Store<AppState> store) => widget.createViewModel(store),
@@ -52,7 +54,6 @@ class _LoadMorePageState<ModelType,
           didLoadMore = _loadMore(viewModel, didLoadMore);
         }
 
-        viewModel.bindBackToTopFunc(_backToTop);
         return NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification scrollNotification) {
             final metrics = scrollNotification.metrics;
@@ -77,11 +78,11 @@ class _LoadMorePageState<ModelType,
                 }
 
                 if (viewModel.isError) {
-                  return LoadingError();
+                  return LoadingError(error: viewModel.error);
                 }
 
                 if (viewModel.isReachedItem) {
-                  print('_LoadMorePageState.build.viewModel.isReachedItem');
+                  return LoadingReached();
                 }
                 return null;
               },
@@ -105,6 +106,7 @@ class _LoadMorePageState<ModelType,
   }
 
   void _backToTop() {
+    assert(controller != null);
     controller.animateTo(
       0,
       duration: Duration(seconds: 1),

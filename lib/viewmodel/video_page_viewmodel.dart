@@ -46,7 +46,7 @@ class VideoPageViewModel extends PageLoadMoreViewModel<VideoPageModel> {
         if (state.isLoading) {
           return;
         }
-        store.dispatch(ActionVideoLoadMore(model));
+        store.dispatch(ActionVideoLoadMoreLoading(model));
       },
       error: state.error,
       isError: state.isError,

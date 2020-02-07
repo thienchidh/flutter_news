@@ -4,9 +4,9 @@ import 'package:redux/redux.dart';
 
 final drawerReducer = combineReducers<DrawerState>([
   //TODO
-  TypedReducer<DrawerState, ActionVideoLoadMore>(_x),
+  TypedReducer<DrawerState, ActionVideoLoadMoreLoading>(_x),
 ]);
 
-DrawerState _x(DrawerState state, ActionVideoLoadMore action) {
+DrawerState _x(DrawerState state, ActionVideoLoadMoreLoading action) {
   return state;
 }

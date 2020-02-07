@@ -26,7 +26,7 @@ class VideoPageState {
 
   VideoPageState copyOf({
     String title,
-    VideoPageState model,
+    VideoPageModel model,
     bool isLoading,
     bool isError,
     Error error,
