@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news/model/drawer_model.dart';
@@ -16,4 +18,8 @@ class DrawerViewModel {
       drawerModel: store.state.drawerState.model,
     );
   }
+
+  DrawerHeaderModel get header => drawerModel.header;
+
+  UnmodifiableListView<DrawerBodyModel> get items => drawerModel.items;
 }

@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:flutter_news/model/video_model.dart';
 import 'package:flutter_news/model/video_page_model.dart';
-import 'package:flutter_news/redux/action/action_bind.dart';
 import 'package:flutter_news/redux/action/action_video.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/viewmodel/page_load_more_viewmodel.dart';
@@ -10,7 +9,8 @@ import 'package:meta/meta.dart';
 import 'package:redux/redux.dart';
 
 @immutable
-class VideoPageViewModel extends PageLoadMoreViewModel<VideoPageModel> {
+class VideoPageViewModel
+    extends PageLoadMoreViewModel<VideoModel, VideoPageModel> {
   VideoPageViewModel({
     @required model,
     @required loadMore,
@@ -22,9 +22,9 @@ class VideoPageViewModel extends PageLoadMoreViewModel<VideoPageModel> {
     @required saveScreenPosition,
     @required currentScrollOffset,
     @required onRefresh,
-    @required bindBackToTopFunc,
+    @required goToLastPositionOfScreen,
   }) : super(
-          model: model,
+    model: model,
           loadMore: loadMore,
           error: error,
           isError: isError,
@@ -34,7 +34,7 @@ class VideoPageViewModel extends PageLoadMoreViewModel<VideoPageModel> {
           saveScreenPosition: saveScreenPosition,
           currentScrollOffset: currentScrollOffset,
           onRefresh: onRefresh,
-          bindBackToTopFunc: bindBackToTopFunc,
+          goToLastPositionOfScreen: goToLastPositionOfScreen,
         );
 
   static VideoPageViewModel fromStore(Store<AppState> store) {
@@ -68,11 +68,12 @@ class VideoPageViewModel extends PageLoadMoreViewModel<VideoPageModel> {
         )));
         return true;
       },
-      bindBackToTopFunc: (func) {
-        if (store.state.homeScreenState.backToTop != func) {
-          store.dispatch(ActionVideoBindBackToTopFunc(func));
-        }
+      goToLastPositionOfScreen: () {
+        state.scrollTo(state.currentScrollOffset);
       },
     );
   }
+
+  @override
+  UnmodifiableListView<VideoModel> get data => model.data;
 }

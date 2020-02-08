@@ -8,9 +8,10 @@ import 'package:flutter_news/viewmodel/page_load_more_viewmodel.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-class LoadMorePage<ModelType,
-        ViewModelType extends PageLoadMoreViewModel<LoadMoreModel<ModelType>>>
-    extends StatefulWidget {
+class LoadMorePage<
+    ModelType,
+    ViewModelType extends PageLoadMoreViewModel<ModelType,
+        LoadMoreModel<ModelType>>> extends StatefulWidget {
   final ViewModelType Function(Store<AppState>) createViewModel;
   final Widget Function(UnmodifiableListView<ModelType>, int) renderItem;
 
@@ -25,26 +26,19 @@ class LoadMorePage<ModelType,
       _LoadMorePageState<ModelType, ViewModelType>();
 }
 
-class _LoadMorePageState<ModelType,
-        ViewModelType extends PageLoadMoreViewModel<LoadMoreModel<ModelType>>>
+class _LoadMorePageState<
+ModelType,
+ViewModelType extends PageLoadMoreViewModel<ModelType,
+    LoadMoreModel<ModelType>>>
     extends State<LoadMorePage<ModelType, ViewModelType>> {
-  ScrollController controller;
-
   @override
   Widget build(BuildContext context) {
     return StoreConnector(
-      onInit: (store) async {
-        final viewModel = widget.createViewModel(store);
-        viewModel.bindBackToTopFunc(_backToTop);
-
-        controller = ScrollController(
-          initialScrollOffset: viewModel.currentScrollOffset,
-        );
-      },
-      onDispose: (store) async {
-        controller.dispose();
-      },
       converter: (Store<AppState> store) => widget.createViewModel(store),
+// FIXME
+//      onInitialBuild: (ViewModelType viewModel) {
+//        viewModel.goToLastPositionOfScreen();
+//      },
       builder: (BuildContext context, ViewModelType viewModel) {
         final model = viewModel.model;
         final data = model.data;
@@ -63,11 +57,10 @@ class _LoadMorePageState<ModelType,
             if (metrics.pixels + 200 >= metrics.maxScrollExtent) {
               didLoadMore = _loadMore(viewModel, didLoadMore);
             }
-            return true;
+            return false;
           },
           child: RefreshIndicator(
             child: ListView.builder(
-              controller: controller,
               itemCount: data.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index < data.length) {
@@ -94,23 +87,15 @@ class _LoadMorePageState<ModelType,
     );
   }
 
-  bool _loadMore(ViewModelType viewModel, bool oldState) {
+  bool _loadMore(final ViewModelType viewModel, final bool oldState) {
     if (!viewModel.isLoading &&
         !viewModel.isReachedItem &&
         !viewModel.isError &&
         !oldState) {
-      oldState = true;
+      final bool newState = true;
       viewModel.loadMore();
+      return newState;
     }
     return oldState;
-  }
-
-  void _backToTop() {
-    assert(controller != null);
-    controller.animateTo(
-      0,
-      duration: Duration(seconds: 1),
-      curve: Curves.bounceIn,
-    );
   }
 }

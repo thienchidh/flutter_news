@@ -1,10 +1,13 @@
+import 'dart:collection';
+
 import 'package:flutter_news/model/load_more_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class PageLoadMoreViewModel<T extends LoadMoreModel> {
+abstract class PageLoadMoreViewModel<ItemModelType,
+    PageModelType extends LoadMoreModel<ItemModelType>> {
   final String title;
-  final T model;
+  final PageModelType model;
   final bool isLoading;
   final bool isError;
   final bool isReachedItem;
@@ -12,9 +15,11 @@ abstract class PageLoadMoreViewModel<T extends LoadMoreModel> {
   final double currentScrollOffset;
 
   final void Function() loadMore;
-  final void Function(void Function()) bindBackToTopFunc;
   final bool Function(double) saveScreenPosition;
   final Future<bool> Function() onRefresh;
+  final void Function() goToLastPositionOfScreen;
+
+  UnmodifiableListView<ItemModelType> get data;
 
   PageLoadMoreViewModel({
     @required this.model,
@@ -27,7 +32,7 @@ abstract class PageLoadMoreViewModel<T extends LoadMoreModel> {
     @required this.saveScreenPosition,
     @required this.currentScrollOffset,
     @required this.onRefresh,
-    @required this.bindBackToTopFunc,
+    @required this.goToLastPositionOfScreen,
   })  : assert(model != null),
         assert(loadMore != null),
         assert(isError != null),
@@ -36,6 +41,6 @@ abstract class PageLoadMoreViewModel<T extends LoadMoreModel> {
         assert(title != null),
         assert(saveScreenPosition != null),
         assert(currentScrollOffset != null),
-        assert(bindBackToTopFunc != null),
+        assert(goToLastPositionOfScreen != null),
         assert(onRefresh != null);
 }

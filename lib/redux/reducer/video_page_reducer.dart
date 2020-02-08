@@ -12,8 +12,7 @@ final videoPageReducer = combineReducers<VideoPageState>([
       _loadMoreVideoErrorReducer),
   TypedReducer<VideoPageState, ActionChangeVideoListViewPosition>(
       _changeVideoListViewPositionReducer),
-  TypedReducer<VideoPageState, ActionVideoBindBackToTopFunc>(
-      _bindVideoBackToTopFunc),
+  TypedReducer<VideoPageState, ActionBindScrollFunc>(_bindScrollFuncReducer),
 ]);
 
 VideoPageState _loadMoreVideoReducer(
@@ -49,7 +48,7 @@ VideoPageState _changeVideoListViewPositionReducer(
   return state.copyOf(currentScrollOffset: action.pixel);
 }
 
-VideoPageState _bindVideoBackToTopFunc(
-    VideoPageState state, ActionVideoBindBackToTopFunc action) {
-  return state.copyOf(backToTop: action.backToTop);
+VideoPageState _bindScrollFuncReducer(
+    VideoPageState state, ActionBindScrollFunc action) {
+  return state.copyOf(scrollTo: action.func);
 }

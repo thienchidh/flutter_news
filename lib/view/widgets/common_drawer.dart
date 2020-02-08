@@ -11,9 +11,8 @@ class CommonDrawer extends StatelessWidget {
     return StoreConnector(
       converter: (Store<AppState> store) => DrawerViewModel.fromStore(store),
       builder: (BuildContext context, DrawerViewModel viewModel) {
-        final DrawerModel drawerModel = viewModel.drawerModel;
-        final header = drawerModel.header;
-        final items = drawerModel.items;
+        final header = viewModel.header;
+        final items = viewModel.items;
 
         return Drawer(
           child: ListView(

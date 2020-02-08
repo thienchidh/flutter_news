@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:flutter_news/model/news_model.dart';
 import 'package:flutter_news/model/news_page_model.dart';
-import 'package:flutter_news/redux/action/action_bind.dart';
 import 'package:flutter_news/redux/action/action_news.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/viewmodel/page_load_more_viewmodel.dart';
@@ -10,7 +9,8 @@ import 'package:meta/meta.dart';
 import 'package:redux/redux.dart';
 
 @immutable
-class NewsPageViewModel extends PageLoadMoreViewModel<NewsPageModel> {
+class NewsPageViewModel
+    extends PageLoadMoreViewModel<NewsModel, NewsPageModel> {
   NewsPageViewModel({
     @required model,
     @required loadMore,
@@ -22,9 +22,9 @@ class NewsPageViewModel extends PageLoadMoreViewModel<NewsPageModel> {
     @required saveScreenPosition,
     @required currentScrollOffset,
     @required onRefresh,
-    @required bindBackToTopFunc,
+    @required goToLastPositionOfScreen,
   }) : super(
-          model: model,
+    model: model,
           loadMore: loadMore,
           error: error,
           isError: isError,
@@ -34,7 +34,7 @@ class NewsPageViewModel extends PageLoadMoreViewModel<NewsPageModel> {
           saveScreenPosition: saveScreenPosition,
           currentScrollOffset: currentScrollOffset,
           onRefresh: onRefresh,
-          bindBackToTopFunc: bindBackToTopFunc,
+          goToLastPositionOfScreen: goToLastPositionOfScreen,
         );
 
   static NewsPageViewModel fromStore(Store<AppState> store) {
@@ -68,11 +68,12 @@ class NewsPageViewModel extends PageLoadMoreViewModel<NewsPageModel> {
         )));
         return true;
       },
-      bindBackToTopFunc: (func) {
-        if (store.state.homeScreenState.backToTop != func) {
-          store.dispatch(ActionNewsBindBackToTopFunc(func));
-        }
+      goToLastPositionOfScreen: () {
+        state.scrollTo(state.currentScrollOffset);
       },
     );
   }
+
+  @override
+  UnmodifiableListView<NewsModel> get data => model.data;
 }

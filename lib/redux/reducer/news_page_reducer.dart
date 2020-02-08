@@ -12,8 +12,7 @@ final newsPageReducer = combineReducers<NewsPageState>([
       _loadMoreNewsErrorReducer),
   TypedReducer<NewsPageState, ActionChangeNewsListViewPosition>(
       _changeNewsListViewPositionReducer),
-  TypedReducer<NewsPageState, ActionNewsBindBackToTopFunc>(
-      _bindNewsBackToTopFunc),
+  TypedReducer<NewsPageState, ActionBindScrollFunc>(_bindScrollFuncReducer),
 ]);
 
 NewsPageState _loadMoreNewsReducer(
@@ -49,10 +48,7 @@ NewsPageState _changeNewsListViewPositionReducer(
   return state.copyOf(currentScrollOffset: action.pixel);
 }
 
-NewsPageState _bindNewsBackToTopFunc(
-    NewsPageState state, ActionNewsBindBackToTopFunc action) {
-  if (state.backToTop == action.backToTop) {
-    return state;
-  }
-  return state.copyOf(backToTop: action.backToTop);
+NewsPageState _bindScrollFuncReducer(
+    NewsPageState state, ActionBindScrollFunc action) {
+  return state.copyOf(scrollTo: action.func);
 }

@@ -13,11 +13,13 @@ class NewsPageState {
   final Error error;
   final double currentScrollOffset;
   final void Function() backToTop;
+  final void Function(double) scrollTo;
 
   NewsPageState({
     @required this.title,
     @required this.model,
     @required this.backToTop,
+    @required this.scrollTo,
     this.isLoading = false,
     this.isError = false,
     this.error,
@@ -32,19 +34,23 @@ class NewsPageState {
     Error error,
     double currentScrollOffset,
     void Function() backToTop,
+    void Function(double) scrollTo,
   }) {
     return NewsPageState(
-        title: title ?? this.title,
-        model: model ?? this.model,
-        error: error ?? this.error,
-        isError: isError ?? this.isError,
-        isLoading: isLoading ?? this.isLoading,
-        currentScrollOffset: currentScrollOffset ?? this.currentScrollOffset,
-        backToTop: backToTop ?? this.backToTop);
+      title: title ?? this.title,
+      model: model ?? this.model,
+      error: error ?? this.error,
+      isError: isError ?? this.isError,
+      isLoading: isLoading ?? this.isLoading,
+      currentScrollOffset: currentScrollOffset ?? this.currentScrollOffset,
+      backToTop: backToTop ?? this.backToTop,
+      scrollTo: scrollTo ?? this.scrollTo,
+    );
   }
 
   static NewsPageState initialize() {
     return NewsPageState(
+      scrollTo: (_) {},
       backToTop: () {},
       title: "News",
       model: NewsPageModel(
@@ -59,21 +65,21 @@ class NewsPageState {
           NewsModel(
             title: "2",
             linkImage:
-                "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
+            "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
             country: "VN",
             timestamp: 123456780009,
           ),
           NewsModel(
             title: "3",
             linkImage:
-                "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
+            "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
             country: "VN",
             timestamp: 123456789,
           ),
           NewsModel(
             title: "4",
             linkImage:
-                "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
+            "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
             country: "VN",
             timestamp: 123456789,
           )

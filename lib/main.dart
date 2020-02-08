@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/redux/store/store.dart';
-import 'package:flutter_news/view/page/news_page.dart';
+import 'package:flutter_news/view/screens/detail_screen.dart';
 import 'package:flutter_news/view/screens/home_screen.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -19,8 +19,8 @@ class Application extends StatelessWidget {
       initialRoute: RoutesName.HOME_PAGE,
       routes: {
         RoutesName.HOME_PAGE: (context) => HomeScreen(),
-        RoutesName.NEWS_PAGE: (context) => NewsPage(),
-        RoutesName.DETAIL_NEWS_PAGE: (context) => Container(),
+        RoutesName.NEWS_PAGE: (context) => HomeScreen(),
+        RoutesName.DETAIL_NEWS_PAGE: (context) => DetailScreen(),
       },
     );
   }

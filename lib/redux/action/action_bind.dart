@@ -1,18 +1,18 @@
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class ActionBindBackToTopFunc {
-  final void Function() backToTop;
+abstract class ActionBind {}
 
-  ActionBindBackToTopFunc(this.backToTop);
+@immutable
+class ActionBindBackToTopFunc extends ActionBind {
+  final void Function() func;
+
+  ActionBindBackToTopFunc(this.func);
 }
 
 @immutable
-class ActionNewsBindBackToTopFunc extends ActionBindBackToTopFunc {
-  ActionNewsBindBackToTopFunc(void Function() backToTop) : super(backToTop);
-}
+class ActionBindScrollFunc extends ActionBind {
+  final void Function(double) func;
 
-@immutable
-class ActionVideoBindBackToTopFunc extends ActionBindBackToTopFunc {
-  ActionVideoBindBackToTopFunc(void Function() backToTop) : super(backToTop);
+  ActionBindScrollFunc(this.func);
 }
