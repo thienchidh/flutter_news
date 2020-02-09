@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return <Widget>[
                   SliverAppBar(
                     title: Text(viewModel.title),
-                    pinned: true,
+//                    pinned: true,
                     floating: true,
                     bottom: TabBar(
                       isScrollable: true,
@@ -91,18 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
     assert(_controller != null);
     if (_controller.hasClients) {
       _controller.jumpTo(pixel);
-      print('pixels = ${_controller.position.maxScrollExtent}');
-      print('${_controller.offset}');
-
-//      (() async {
-//        await _controller.animateTo(
-//          pixel,
-//          duration: Duration(
-//            seconds: 10,
-//          ),
-//          curve: Curves.ease,
-//        );
-//      })();
     }
   }
 }

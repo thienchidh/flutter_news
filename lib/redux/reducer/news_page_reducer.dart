@@ -6,6 +6,7 @@ import 'package:redux/redux.dart';
 final newsPageReducer = combineReducers<NewsPageState>([
   // TODO
   TypedReducer<NewsPageState, ActionNewsLoadMoreLoading>(_loadMoreNewsReducer),
+  TypedReducer<NewsPageState, ActionNewsRefresh>(_refresh),
   TypedReducer<NewsPageState, ActionNewsLoadMoreSuccess>(
       _loadMoreNewsSuccessReducer),
   TypedReducer<NewsPageState, ActionNewsLoadMoreError>(
@@ -51,4 +52,12 @@ NewsPageState _changeNewsListViewPositionReducer(
 NewsPageState _bindScrollFuncReducer(
     NewsPageState state, ActionBindScrollFunc action) {
   return state.copyOf(scrollTo: action.func);
+}
+
+NewsPageState _refresh(NewsPageState state, ActionNewsRefresh action) {
+  return state.copyOf(
+    isLoading: true,
+    isError: false,
+    error: null,
+  );
 }

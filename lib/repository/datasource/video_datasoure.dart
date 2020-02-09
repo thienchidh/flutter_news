@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter_news/model/load_more_model.dart';
 import 'package:flutter_news/model/my_response.dart';
 import 'package:flutter_news/model/video_model.dart';
@@ -18,6 +20,8 @@ class VideoDataSource implements DataSource<MyResponse<VideoModel>> {
       {optional}) async {
     // TODO: implement fetchData
 
+    await Future.delayed(Duration(milliseconds: 500));
+
     final data = <VideoModel>[
       VideoModel(
         title: "example load more",
@@ -25,16 +29,10 @@ class VideoDataSource implements DataSource<MyResponse<VideoModel>> {
             "https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4",
       ),
     ];
-    return MyResponse([
+
+    final list = UnmodifiableListView<VideoModel>([
       ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-    ], config.nextIndex + data.length);
+    ]);
+    return MyResponse(list, config.nextIndex + list.length);
   }
 }

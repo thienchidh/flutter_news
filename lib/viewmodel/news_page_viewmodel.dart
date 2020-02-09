@@ -24,7 +24,7 @@ class NewsPageViewModel
     @required onRefresh,
     @required goToLastPositionOfScreen,
   }) : super(
-    model: model,
+          model: model,
           loadMore: loadMore,
           error: error,
           isError: isError,
@@ -51,7 +51,7 @@ class NewsPageViewModel
       isLoading: state.isLoading,
       isError: state.isError,
       error: state.error,
-      isReachedItem: state.model.isReachedItem,
+      isReachedItem: model.isReachedItem,
       title: state.title,
       saveScreenPosition: (double pixel) {
         if ((pixel - state.currentScrollOffset).abs() >= 1) {
@@ -62,10 +62,7 @@ class NewsPageViewModel
       },
       currentScrollOffset: state.currentScrollOffset,
       onRefresh: () async {
-        await store.dispatch(ActionChangeNewsListViewPosition(0));
-        await store.dispatch(ActionNewsLoadMoreSuccess(NewsPageModel(
-          data: UnmodifiableListView<NewsModel>([]),
-        )));
+        await store.dispatch(ActionNewsRefresh(NewsPageModel()));
         return true;
       },
       goToLastPositionOfScreen: () {

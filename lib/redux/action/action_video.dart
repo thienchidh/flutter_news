@@ -33,3 +33,8 @@ class ActionChangeVideoListViewPosition {
 
   ActionChangeVideoListViewPosition(this.pixel);
 }
+
+@immutable
+class ActionVideoRefresh extends ActionVideoLoadMore {
+  ActionVideoRefresh(ConfigModel configModel) : super(configModel);
+}

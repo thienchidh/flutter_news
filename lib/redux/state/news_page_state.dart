@@ -54,36 +54,7 @@ class NewsPageState {
       backToTop: () {},
       title: "News",
       model: NewsPageModel(
-        data: UnmodifiableListView<NewsModel>([
-          NewsModel(
-            title: "1",
-            linkImage:
-                "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
-            country: "VN",
-            timestamp: 123456789,
-          ),
-          NewsModel(
-            title: "2",
-            linkImage:
-            "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
-            country: "VN",
-            timestamp: 123456780009,
-          ),
-          NewsModel(
-            title: "3",
-            linkImage:
-            "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
-            country: "VN",
-            timestamp: 123456789,
-          ),
-          NewsModel(
-            title: "4",
-            linkImage:
-            "https://kenh14cdn.com/zoom/460_289/2020/2/6/avatar-15809653539941703360200-crop-1580965380165995299685.jpg",
-            country: "VN",
-            timestamp: 123456789,
-          )
-        ]),
+        data: UnmodifiableListView<NewsModel>([]),
       ),
     );
   }

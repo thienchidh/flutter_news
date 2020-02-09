@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter_news/model/load_more_model.dart';
 import 'package:flutter_news/model/my_response.dart';
 import 'package:flutter_news/model/news_model.dart';
@@ -18,25 +20,21 @@ class NewsDataSource implements DataSource<MyResponse<NewsModel>> {
       {optional}) async {
     // TODO: implement fetchData
 
+    await Future.delayed(Duration(milliseconds: 500));
+
     final data = <NewsModel>[
       NewsModel(
         title: "example load more",
         country: "VN",
         linkImage:
-            "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/1/8/f/0/18f09289e6711ee7c62295dc2c464e35.jpg",
+            "https://picsum.photos/200/300?timestamp=${DateTime.now().millisecondsSinceEpoch}",
         timestamp: DateTime.now().millisecondsSinceEpoch,
       ),
     ];
-    return MyResponse([
+
+    final list = UnmodifiableListView<NewsModel>([
       ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-    ], config.nextIndex + data.length);
+    ]);
+    return MyResponse(list, config.nextIndex + list.length);
   }
 }

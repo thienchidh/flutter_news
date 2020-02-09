@@ -24,7 +24,7 @@ class VideoPageViewModel
     @required onRefresh,
     @required goToLastPositionOfScreen,
   }) : super(
-    model: model,
+          model: model,
           loadMore: loadMore,
           error: error,
           isError: isError,
@@ -51,7 +51,7 @@ class VideoPageViewModel
       error: state.error,
       isError: state.isError,
       isLoading: state.isLoading,
-      isReachedItem: state.model.isReachedItem,
+      isReachedItem: model.isReachedItem,
       title: state.title,
       saveScreenPosition: (double pixel) {
         if ((pixel - state.currentScrollOffset).abs() >= 1) {
@@ -62,10 +62,7 @@ class VideoPageViewModel
       },
       currentScrollOffset: state.currentScrollOffset,
       onRefresh: () async {
-        await store.dispatch(ActionChangeVideoListViewPosition(0));
-        await store.dispatch(ActionVideoLoadMoreSuccess(VideoPageModel(
-          data: UnmodifiableListView<VideoModel>([]),
-        )));
+        await store.dispatch(ActionVideoRefresh(VideoPageModel()));
         return true;
       },
       goToLastPositionOfScreen: () {

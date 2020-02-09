@@ -27,9 +27,9 @@ class LoadMorePage<
 }
 
 class _LoadMorePageState<
-ModelType,
-ViewModelType extends PageLoadMoreViewModel<ModelType,
-    LoadMoreModel<ModelType>>>
+        ModelType,
+        ViewModelType extends PageLoadMoreViewModel<ModelType,
+            LoadMoreModel<ModelType>>>
     extends State<LoadMorePage<ModelType, ViewModelType>> {
   @override
   Widget build(BuildContext context) {
@@ -44,9 +44,6 @@ ViewModelType extends PageLoadMoreViewModel<ModelType,
         final data = model.data;
 
         bool didLoadMore = false;
-        if (data.isEmpty) {
-          didLoadMore = _loadMore(viewModel, didLoadMore);
-        }
 
         return NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification scrollNotification) {
@@ -61,6 +58,7 @@ ViewModelType extends PageLoadMoreViewModel<ModelType,
           },
           child: RefreshIndicator(
             child: ListView.builder(
+              shrinkWrap: true,
               itemCount: data.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index < data.length) {
@@ -71,12 +69,18 @@ ViewModelType extends PageLoadMoreViewModel<ModelType,
                 }
 
                 if (viewModel.isError) {
-                  return LoadingError(error: viewModel.error);
+                  return LoadingError(
+                    error: viewModel.error,
+                    onClick: viewModel.loadMore,
+                  );
                 }
 
                 if (viewModel.isReachedItem) {
-                  return LoadingReached();
+                  return LoadingReached(
+                    onClick: viewModel.loadMore,
+                  );
                 }
+                didLoadMore = _loadMore(viewModel, didLoadMore);
                 return null;
               },
             ),

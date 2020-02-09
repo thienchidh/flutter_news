@@ -54,34 +54,7 @@ class VideoPageState {
       backToTop: () {},
       title: "Video Page",
       model: VideoPageModel(
-        data: UnmodifiableListView<VideoModel>([
-          // TODO empty list
-          VideoModel(
-            title: '1',
-            linkVideo:
-                'https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-          ),
-          VideoModel(
-            title: '2',
-            linkVideo:
-            'https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-          ),
-          VideoModel(
-            title: '3',
-            linkVideo:
-            'https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-          ),
-          VideoModel(
-            title: '4',
-            linkVideo:
-            'https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-          ),
-          VideoModel(
-            title: '5',
-            linkVideo:
-            'https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-          ),
-        ]),
+        data: UnmodifiableListView<VideoModel>([]),
       ),
     );
   }

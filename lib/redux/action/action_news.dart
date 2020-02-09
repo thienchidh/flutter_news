@@ -38,3 +38,8 @@ class ActionChangeNewsListViewPosition {
 
   ActionChangeNewsListViewPosition(this.pixel);
 }
+
+@immutable
+class ActionNewsRefresh extends ActionNewsLoadMore {
+  ActionNewsRefresh(ConfigModel configModel) : super(configModel);
+}

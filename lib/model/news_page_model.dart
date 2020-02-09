@@ -7,10 +7,14 @@ import 'package:meta/meta.dart';
 @immutable
 class NewsPageModel extends LoadMoreModel<NewsModel> {
   NewsPageModel({
-    @required UnmodifiableListView<NewsModel> data,
+    UnmodifiableListView<NewsModel> data,
     bool isReachedItem = false,
     int nextIndex = 0,
-  }) : super(isReachedItem: isReachedItem, nextIndex: nextIndex, data: data);
+  }) : super(
+          isReachedItem: isReachedItem,
+          nextIndex: nextIndex,
+          data: data ?? UnmodifiableListView<NewsModel>([]),
+        );
 
   @override
   bool operator ==(Object other) =>

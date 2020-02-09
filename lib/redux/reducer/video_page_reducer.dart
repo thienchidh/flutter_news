@@ -6,6 +6,7 @@ import 'package:redux/redux.dart';
 final videoPageReducer = combineReducers<VideoPageState>([
   TypedReducer<VideoPageState, ActionVideoLoadMoreLoading>(
       _loadMoreVideoReducer),
+  TypedReducer<VideoPageState, ActionVideoRefresh>(_refresh),
   TypedReducer<VideoPageState, ActionVideoLoadMoreSuccess>(
       _loadMoreVideoSuccessReducer),
   TypedReducer<VideoPageState, ActionVideoLoadMoreError>(
@@ -51,4 +52,12 @@ VideoPageState _changeVideoListViewPositionReducer(
 VideoPageState _bindScrollFuncReducer(
     VideoPageState state, ActionBindScrollFunc action) {
   return state.copyOf(scrollTo: action.func);
+}
+
+VideoPageState _refresh(VideoPageState state, ActionVideoRefresh action) {
+  return state.copyOf(
+    isLoading: true,
+    isError: false,
+    error: null,
+  );
 }
