@@ -2,8 +2,10 @@ import 'dart:collection';
 
 import 'package:flutter_news/model/load_more_model.dart';
 import 'package:flutter_news/model/video_model.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+@JsonSerializable(nullable: false)
 @immutable
 class VideoPageModel extends LoadMoreModel<VideoModel> {
   VideoPageModel({
@@ -19,9 +21,9 @@ class VideoPageModel extends LoadMoreModel<VideoModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          super == other &&
-              other is VideoPageModel &&
-              runtimeType == other.runtimeType;
+      super == other &&
+          other is VideoPageModel &&
+          runtimeType == other.runtimeType;
 
   @override
   int get hashCode => super.hashCode;

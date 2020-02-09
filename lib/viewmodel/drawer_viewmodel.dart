@@ -22,4 +22,14 @@ class DrawerViewModel {
   DrawerHeaderModel get header => drawerModel.header;
 
   UnmodifiableListView<DrawerBodyModel> get items => drawerModel.items;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DrawerViewModel &&
+          runtimeType == other.runtimeType &&
+          drawerModel == other.drawerModel;
+
+  @override
+  int get hashCode => drawerModel.hashCode;
 }

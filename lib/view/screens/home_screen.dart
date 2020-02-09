@@ -37,8 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
           floatingActionButton: FloatingActionButton(
             onPressed: _backToTop,
             child: Icon(Icons.keyboard_arrow_up),
-            mini: true,
-            isExtended: true,
           ),
           drawer: CommonDrawer(),
           body: DefaultTabController(

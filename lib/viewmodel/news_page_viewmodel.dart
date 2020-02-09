@@ -72,5 +72,13 @@ class NewsPageViewModel
   }
 
   @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NewsPageViewModel && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
   UnmodifiableListView<NewsModel> get data => model.data;
 }

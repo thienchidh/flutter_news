@@ -73,4 +73,14 @@ class VideoPageViewModel
 
   @override
   UnmodifiableListView<VideoModel> get data => model.data;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      super == other &&
+          other is VideoPageViewModel &&
+          runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => super.hashCode;
 }

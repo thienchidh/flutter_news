@@ -24,6 +24,25 @@ class HomeScreenViewModel {
     @required this.bindScrollToFunc,
   });
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is HomeScreenViewModel &&
+          runtimeType == other.runtimeType &&
+          title == other.title &&
+          pagesModel == other.pagesModel &&
+          screenModel == other.screenModel &&
+          bindBackToTopFunc == other.bindBackToTopFunc &&
+          bindScrollToFunc == other.bindScrollToFunc;
+
+  @override
+  int get hashCode =>
+      title.hashCode ^
+      pagesModel.hashCode ^
+      screenModel.hashCode ^
+      bindBackToTopFunc.hashCode ^
+      bindScrollToFunc.hashCode;
+
   static HomeScreenViewModel fromStore(Store<AppState> store) {
     final state = store.state.homeScreenState;
     final model = state.model;

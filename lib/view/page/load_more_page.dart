@@ -51,7 +51,7 @@ class _LoadMorePageState<
 
             viewModel.saveScreenPosition(metrics.pixels);
 
-            if (metrics.pixels + 200 >= metrics.maxScrollExtent) {
+            if (metrics.pixels == metrics.maxScrollExtent) {
               didLoadMore = _loadMore(viewModel, didLoadMore);
             }
             return false;
@@ -80,7 +80,9 @@ class _LoadMorePageState<
                     onClick: viewModel.loadMore,
                   );
                 }
-                didLoadMore = _loadMore(viewModel, didLoadMore);
+                if (data.length < 10) {
+                  didLoadMore = _loadMore(viewModel, didLoadMore);
+                }
                 return null;
               },
             ),

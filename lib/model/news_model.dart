@@ -1,5 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+@JsonSerializable(nullable: false)
 @immutable
 class NewsModel {
   final String title;
@@ -13,12 +15,6 @@ class NewsModel {
     @required this.country,
     @required this.timestamp,
   });
-
-  NewsModel.fromJsonMap(Map<String, dynamic> map)
-      : title = map["title"],
-        linkImage = map["linkImage"],
-        country = map["country"],
-        timestamp = map["timestamp"];
 
   @override
   bool operator ==(Object other) =>
@@ -36,13 +32,4 @@ class NewsModel {
       linkImage.hashCode ^
       country.hashCode ^
       timestamp.hashCode;
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['title'] = title;
-    data['linkImage'] = linkImage;
-    data['country'] = country;
-    data['timestamp'] = timestamp;
-    return data;
-  }
 }

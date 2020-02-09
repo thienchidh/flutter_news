@@ -43,4 +43,35 @@ abstract class PageLoadMoreViewModel<ItemModelType,
         assert(currentScrollOffset != null),
         assert(goToLastPositionOfScreen != null),
         assert(onRefresh != null);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PageLoadMoreViewModel &&
+          runtimeType == other.runtimeType &&
+          title == other.title &&
+          model == other.model &&
+          isLoading == other.isLoading &&
+          isError == other.isError &&
+          isReachedItem == other.isReachedItem &&
+          error == other.error &&
+          currentScrollOffset == other.currentScrollOffset &&
+          loadMore == other.loadMore &&
+          saveScreenPosition == other.saveScreenPosition &&
+          onRefresh == other.onRefresh &&
+          goToLastPositionOfScreen == other.goToLastPositionOfScreen;
+
+  @override
+  int get hashCode =>
+      title.hashCode ^
+      model.hashCode ^
+      isLoading.hashCode ^
+      isError.hashCode ^
+      isReachedItem.hashCode ^
+      error.hashCode ^
+      currentScrollOffset.hashCode ^
+      loadMore.hashCode ^
+      saveScreenPosition.hashCode ^
+      onRefresh.hashCode ^
+      goToLastPositionOfScreen.hashCode;
 }

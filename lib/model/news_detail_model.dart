@@ -1,6 +1,8 @@
 import 'package:flutter_news/model/news_model.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+@JsonSerializable(nullable: false)
 @immutable
 class NewsDetailModel extends NewsModel {
   // TODO

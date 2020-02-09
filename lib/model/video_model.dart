@@ -1,5 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+@JsonSerializable(nullable: false)
 @immutable
 class VideoModel {
   final String title;

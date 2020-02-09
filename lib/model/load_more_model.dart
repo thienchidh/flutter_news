@@ -32,4 +32,15 @@ abstract class LoadMoreModel<T> extends ConfigModel {
     @required int nextIndex,
     @required this.data,
   }) : super(isReachedItem: isReachedItem, nextIndex: nextIndex);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      super == other &&
+          other is LoadMoreModel &&
+          runtimeType == other.runtimeType &&
+          data == other.data;
+
+  @override
+  int get hashCode => super.hashCode ^ data.hashCode;
 }

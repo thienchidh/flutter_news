@@ -1,8 +1,10 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+@JsonSerializable(nullable: false)
 @immutable
 class HomeScreenModel {
   final String title;
