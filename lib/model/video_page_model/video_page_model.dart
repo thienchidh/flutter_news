@@ -21,9 +21,9 @@ class VideoPageModel extends LoadMoreModel<VideoModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          super == other &&
-              other is VideoPageModel &&
-              runtimeType == other.runtimeType;
+      super == other &&
+          other is VideoPageModel &&
+          runtimeType == other.runtimeType;
 
   @override
   int get hashCode => super.hashCode;

@@ -17,4 +17,11 @@ abstract class MyResponse<T> {
 
   @override
   int get hashCode => data.hashCode ^ nextIndex.hashCode;
+
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'MyResponse{data: $data, nextIndex: $nextIndex}';
+  }
 }

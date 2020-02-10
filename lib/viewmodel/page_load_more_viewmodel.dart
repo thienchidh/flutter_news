@@ -9,7 +9,7 @@ abstract class PageLoadMoreViewModel<ItemModelType,
   final bool isLoading;
   final bool isError;
   final bool isReachedItem;
-  final Error error;
+  final Exception error;
   final double currentScrollOffset;
 
   final void Function() loadMore;

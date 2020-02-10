@@ -26,7 +26,7 @@ class ActionNewsLoadMoreSuccess extends ActionNewsLoadMore {
 
 @immutable
 class ActionNewsLoadMoreError extends ActionNewsLoadMore {
-  final Error error;
+  final Exception error;
 
   ActionNewsLoadMoreError(ConfigModel configModel, this.error)
       : super(configModel);

@@ -12,6 +12,10 @@ class VideoResponse extends MyResponse<VideoModel> {
     return _$VideoResponseFromJson(json);
   }
 
+  static VideoResponse fromJsonInStatic(Map<String, dynamic> json) {
+    return _$VideoResponseFromJson(json);
+  }
+
   Map<String, dynamic> toJson() {
     return _$VideoResponseToJson(this);
   }

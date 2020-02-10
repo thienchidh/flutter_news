@@ -12,7 +12,21 @@ class NewsResponse extends MyResponse<NewsModel> {
     return _$NewsResponseFromJson(json);
   }
 
+  static NewsResponse fromJsonInStatic(Map<String, dynamic> json) {
+    return NewsResponse.fromJson(json);
+  }
+
   Map<String, dynamic> toJson() {
     return _$NewsResponseToJson(this);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      super == other &&
+          other is NewsResponse &&
+          runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => super.hashCode;
 }

@@ -21,7 +21,7 @@ class ActionVideoLoadMoreSuccess extends ActionVideoLoadMore {
 }
 
 class ActionVideoLoadMoreError extends ActionVideoLoadMore {
-  final Error error;
+  final Exception error;
 
   ActionVideoLoadMoreError(ConfigModel configModel, this.error)
       : super(configModel);

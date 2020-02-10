@@ -44,7 +44,7 @@ class LoadingReached extends StatelessWidget {
 class LoadingError extends StatelessWidget {
   final void Function() onClick;
 
-  final Error error;
+  final Exception error;
 
   const LoadingError({Key key, this.onClick, @required this.error})
       : super(key: key);
@@ -58,8 +58,8 @@ class LoadingError extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: AspectRatio(
             aspectRatio: 16 / 9,
-            child:
-                ErrorWidget('Please check your internet!\nClick me to retry!'),
+            child: ErrorWidget(
+                'Please check your internet!\nClick me to retry!\n$error'),
           ),
         ),
       ),

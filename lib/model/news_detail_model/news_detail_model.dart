@@ -18,9 +18,9 @@ class NewsDetailModel extends NewsModel {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          super == other &&
-              other is NewsDetailModel &&
-              runtimeType == other.runtimeType;
+      super == other &&
+          other is NewsDetailModel &&
+          runtimeType == other.runtimeType;
 
   @override
   int get hashCode => super.hashCode;

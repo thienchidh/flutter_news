@@ -8,7 +8,7 @@ class NewsPageState {
   final NewsPageModel model;
   final bool isLoading;
   final bool isError;
-  final Error error;
+  final Exception error;
   final double currentScrollOffset;
   final void Function() backToTop;
   final void Function(double) scrollTo;
@@ -29,7 +29,7 @@ class NewsPageState {
     NewsPageModel model,
     bool isLoading,
     bool isError,
-    Error error,
+    Exception error,
     double currentScrollOffset,
     void Function() backToTop,
     void Function(double) scrollTo,

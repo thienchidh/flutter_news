@@ -21,9 +21,9 @@ class NewsPageModel extends LoadMoreModel<NewsModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          super == other &&
-              other is NewsPageModel &&
-              runtimeType == other.runtimeType;
+      super == other &&
+          other is NewsPageModel &&
+          runtimeType == other.runtimeType;
 
   @override
   int get hashCode => super.hashCode;
