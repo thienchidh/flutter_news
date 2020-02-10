@@ -1,8 +1,7 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/load_more_model.dart';
-import 'package:flutter_news/model/my_response.dart';
-import 'package:flutter_news/model/video_model.dart';
+import 'package:flutter_news/model/config_model/config_model.dart';
+import 'package:flutter_news/model/my_response/my_response.dart';
+import 'package:flutter_news/model/video_model/video_model.dart';
+import 'package:flutter_news/model/video_response/video_response.dart';
 import 'package:flutter_news/repository/datasource/datasource.dart';
 
 class VideoDataSource implements DataSource<MyResponse<VideoModel>> {
@@ -30,9 +29,9 @@ class VideoDataSource implements DataSource<MyResponse<VideoModel>> {
       ),
     ];
 
-    final list = UnmodifiableListView<VideoModel>([
+    final list = List<VideoModel>.unmodifiable([
       ...data,
     ]);
-    return MyResponse(list, config.nextIndex + list.length);
+    return VideoResponse(list, config.nextIndex + list.length);
   }
 }

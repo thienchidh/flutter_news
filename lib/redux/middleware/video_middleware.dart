@@ -1,7 +1,5 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/video_model.dart';
-import 'package:flutter_news/model/video_page_model.dart';
+import 'package:flutter_news/model/video_model/video_model.dart';
+import 'package:flutter_news/model/video_page_model/video_page_model.dart';
 import 'package:flutter_news/redux/action/action_video.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/repository/video_repository.dart';
@@ -26,8 +24,10 @@ Future<void> _loadMoreVideo(
     final VideoPageViewModel viewModel = VideoPageViewModel.fromStore(store);
 
     final data = VideoPageModel(
-      data: UnmodifiableListView<VideoModel>(
-          [...viewModel.model.data, ...response.data]),
+      data: List<VideoModel>.unmodifiable([
+        ...viewModel.model.data,
+        ...response.data,
+      ]),
       nextIndex:
           response.data.length == 0 ? config.nextIndex : response.nextIndex,
       isReachedItem: response.data.length == 0,

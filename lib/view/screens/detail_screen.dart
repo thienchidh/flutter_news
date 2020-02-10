@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/view/widgets/common_drawer.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 class DetailScreen extends StatefulWidget {
   @override

@@ -1,8 +1,6 @@
-import 'dart:collection';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/drawer_model.dart';
+import 'package:flutter_news/model/drawer_model/drawer_model.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:meta/meta.dart';
 import 'package:redux/redux.dart';
@@ -21,7 +19,7 @@ class DrawerViewModel {
 
   DrawerHeaderModel get header => drawerModel.header;
 
-  UnmodifiableListView<DrawerBodyModel> get items => drawerModel.items;
+  List<DrawerBodyModel> get items => drawerModel.items;
 
   @override
   bool operator ==(Object other) =>

@@ -1,6 +1,4 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/load_more_model.dart';
+import 'package:flutter_news/model/load_more_model/load_more_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -19,7 +17,7 @@ abstract class PageLoadMoreViewModel<ItemModelType,
   final Future<bool> Function() onRefresh;
   final void Function() goToLastPositionOfScreen;
 
-  UnmodifiableListView<ItemModelType> get data;
+  List<ItemModelType> get data;
 
   PageLoadMoreViewModel({
     @required this.model,

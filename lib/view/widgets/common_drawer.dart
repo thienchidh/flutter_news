@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/drawer_model.dart';
+import 'package:flutter_news/model/drawer_model/drawer_model.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/viewmodel/drawer_viewmodel.dart';
 import 'package:flutter_redux/flutter_redux.dart';

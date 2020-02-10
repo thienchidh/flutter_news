@@ -1,7 +1,5 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/news_model.dart';
-import 'package:flutter_news/model/news_page_model.dart';
+import 'package:flutter_news/model/news_model/news_model.dart';
+import 'package:flutter_news/model/news_page_model/news_page_model.dart';
 import 'package:flutter_news/redux/action/action_news.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/repository/news_repository.dart';
@@ -26,8 +24,10 @@ Future<void> _loadMoreNews(
     final NewsPageViewModel viewModel = NewsPageViewModel.fromStore(store);
 
     final data = NewsPageModel(
-      data: UnmodifiableListView<NewsModel>(
-          [...viewModel.model.data, ...response.data]),
+      data: List<NewsModel>.unmodifiable([
+        ...viewModel.model.data,
+        ...response.data,
+      ]),
       nextIndex:
           response.data.length == 0 ? config.nextIndex : response.nextIndex,
       isReachedItem: response.data.length == 0,

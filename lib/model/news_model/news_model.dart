@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+part 'news_model.g.dart';
+
 @JsonSerializable(nullable: false)
 @immutable
 class NewsModel {
@@ -32,4 +34,12 @@ class NewsModel {
       linkImage.hashCode ^
       country.hashCode ^
       timestamp.hashCode;
+
+  factory NewsModel.fromJson(Map<String, dynamic> json) {
+    return _$NewsModelFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() {
+    return _$NewsModelToJson(this);
+  }
 }

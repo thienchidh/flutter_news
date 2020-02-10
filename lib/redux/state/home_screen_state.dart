@@ -1,7 +1,6 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/home_screen_model.dart';
+import 'package:flutter_news/model/home_screen_model/home_screen_model.dart';
+import 'package:flutter_news/model/page_model/page_model.dart';
 import 'package:flutter_news/view/page/news_page.dart';
 import 'package:flutter_news/view/page/video_page.dart';
 import 'package:meta/meta.dart';
@@ -24,7 +23,7 @@ class HomeScreenState {
     return HomeScreenState(
       model: HomeScreenModel(
         title: "Home Page",
-        pagesModel: UnmodifiableListView<PageModel>([
+        pagesModel: List<PageModel>.unmodifiable([
           PageModel(
             title: "News",
             icon: Icon(Icons.event_note),

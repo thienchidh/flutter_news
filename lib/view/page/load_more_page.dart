@@ -1,7 +1,5 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/load_more_model.dart';
+import 'package:flutter_news/model/load_more_model/load_more_model.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/view/widgets/item_loading.dart';
 import 'package:flutter_news/viewmodel/page_load_more_viewmodel.dart';
@@ -13,7 +11,7 @@ class LoadMorePage<
     ViewModelType extends PageLoadMoreViewModel<ModelType,
         LoadMoreModel<ModelType>>> extends StatefulWidget {
   final ViewModelType Function(Store<AppState>) createViewModel;
-  final Widget Function(UnmodifiableListView<ModelType>, int) renderItem;
+  final Widget Function(List<ModelType>, int) renderItem;
 
   const LoadMorePage({
     Key key,

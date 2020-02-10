@@ -1,5 +1,5 @@
-import 'package:flutter_news/model/load_more_model.dart';
-import 'package:flutter_news/model/video_page_model.dart';
+import 'package:flutter_news/model/config_model/config_model.dart';
+import 'package:flutter_news/model/video_page_model/video_page_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable

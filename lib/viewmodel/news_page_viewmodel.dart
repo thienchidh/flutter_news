@@ -1,7 +1,5 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/news_model.dart';
-import 'package:flutter_news/model/news_page_model.dart';
+import 'package:flutter_news/model/news_model/news_model.dart';
+import 'package:flutter_news/model/news_page_model/news_page_model.dart';
 import 'package:flutter_news/redux/action/action_news.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/viewmodel/page_load_more_viewmodel.dart';
@@ -80,5 +78,5 @@ class NewsPageViewModel
   int get hashCode => 0;
 
   @override
-  UnmodifiableListView<NewsModel> get data => model.data;
+  List<NewsModel> get data => model.data;
 }

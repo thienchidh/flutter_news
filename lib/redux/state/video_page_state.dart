@@ -1,7 +1,5 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/video_model.dart';
-import 'package:flutter_news/model/video_page_model.dart';
+import 'package:flutter_news/model/video_model/video_model.dart';
+import 'package:flutter_news/model/video_page_model/video_page_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -54,7 +52,7 @@ class VideoPageState {
       backToTop: () {},
       title: "Video Page",
       model: VideoPageModel(
-        data: UnmodifiableListView<VideoModel>([]),
+        data: List<VideoModel>.unmodifiable([]),
       ),
     );
   }

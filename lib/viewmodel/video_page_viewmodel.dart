@@ -1,7 +1,5 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/video_model.dart';
-import 'package:flutter_news/model/video_page_model.dart';
+import 'package:flutter_news/model/video_model/video_model.dart';
+import 'package:flutter_news/model/video_page_model/video_page_model.dart';
 import 'package:flutter_news/redux/action/action_video.dart';
 import 'package:flutter_news/redux/state/app_state.dart';
 import 'package:flutter_news/viewmodel/page_load_more_viewmodel.dart';
@@ -72,7 +70,7 @@ class VideoPageViewModel
   }
 
   @override
-  UnmodifiableListView<VideoModel> get data => model.data;
+  List<VideoModel> get data => model.data;
 
   @override
   bool operator ==(Object other) =>

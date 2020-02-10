@@ -1,7 +1,5 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/news_model.dart';
-import 'package:flutter_news/model/news_page_model.dart';
+import 'package:flutter_news/model/news_model/news_model.dart';
+import 'package:flutter_news/model/news_page_model/news_page_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -54,7 +52,7 @@ class NewsPageState {
       backToTop: () {},
       title: "News",
       model: NewsPageModel(
-        data: UnmodifiableListView<NewsModel>([]),
+        data: List<NewsModel>.unmodifiable([]),
       ),
     );
   }

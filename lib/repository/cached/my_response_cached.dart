@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:flutter_news/model/my_response.dart';
+import 'package:flutter_news/model/my_response/my_response.dart';
 import 'package:flutter_news/repository/cached/cached.dart';
 
 class MyResponseCached<T> implements Cached<MyResponse<T>, int> {

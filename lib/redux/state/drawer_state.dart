@@ -1,8 +1,6 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_news/main.dart';
-import 'package:flutter_news/model/drawer_model.dart';
+import 'package:flutter_news/model/drawer_model/drawer_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -23,7 +21,7 @@ class DrawerState {
     return DrawerState(
       model: DrawerModel(
         header: DrawerHeaderModel(title: "Title of header"),
-        items: UnmodifiableListView<DrawerBodyModel>([
+        items: List<DrawerBodyModel>.unmodifiable([
           DrawerBodyModel(
             icon: Icon(Icons.add),
             title: "home page",

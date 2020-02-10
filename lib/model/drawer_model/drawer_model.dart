@@ -1,15 +1,11 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
-@JsonSerializable(nullable: false)
 @immutable
 class DrawerModel {
   final DrawerHeaderModel header;
-  final UnmodifiableListView<DrawerBodyModel> items;
+  final List<DrawerBodyModel> items;
 
   DrawerModel({
     @required this.header,

@@ -1,8 +1,7 @@
-import 'dart:collection';
-
-import 'package:flutter_news/model/load_more_model.dart';
-import 'package:flutter_news/model/my_response.dart';
-import 'package:flutter_news/model/news_model.dart';
+import 'package:flutter_news/model/config_model/config_model.dart';
+import 'package:flutter_news/model/my_response/my_response.dart';
+import 'package:flutter_news/model/news_model/news_model.dart';
+import 'package:flutter_news/model/news_response/news_response.dart';
 import 'package:flutter_news/repository/datasource/datasource.dart';
 
 class NewsDataSource implements DataSource<MyResponse<NewsModel>> {
@@ -32,9 +31,9 @@ class NewsDataSource implements DataSource<MyResponse<NewsModel>> {
       ),
     ];
 
-    final list = UnmodifiableListView<NewsModel>([
+    final list = List<NewsModel>.unmodifiable([
       ...data,
     ]);
-    return MyResponse(list, config.nextIndex + list.length);
+    return NewsResponse(list, config.nextIndex + list.length);
   }
 }

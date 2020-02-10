@@ -1,12 +1,8 @@
-import 'dart:collection';
-
-import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
-@JsonSerializable(nullable: false)
 @immutable
-class MyResponse<T> {
-  final UnmodifiableListView<T> data;
+abstract class MyResponse<T> {
+  final List<T> data;
   final int nextIndex;
 
   MyResponse(this.data, this.nextIndex);

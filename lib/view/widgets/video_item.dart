@@ -1,6 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/video_model.dart';
+import 'package:flutter_news/model/video_model/video_model.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoItem extends StatefulWidget {

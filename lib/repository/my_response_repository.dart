@@ -1,5 +1,5 @@
-import 'package:flutter_news/model/load_more_model.dart';
-import 'package:flutter_news/model/my_response.dart';
+import 'package:flutter_news/model/config_model/config_model.dart';
+import 'package:flutter_news/model/my_response/my_response.dart';
 import 'package:flutter_news/repository/cached/cached.dart';
 import 'package:flutter_news/repository/datasource/datasource.dart';
 import 'package:flutter_news/repository/repository.dart';
