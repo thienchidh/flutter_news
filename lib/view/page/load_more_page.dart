@@ -33,7 +33,7 @@ class _LoadMorePageState<
   Widget build(BuildContext context) {
     return StoreConnector(
       converter: (Store<AppState> store) => widget.createViewModel(store),
-// FIXME
+// TODO
 //      onInitialBuild: (ViewModelType viewModel) {
 //        viewModel.goToLastPositionOfScreen();
 //      },
@@ -43,48 +43,79 @@ class _LoadMorePageState<
 
         bool didLoadMore = false;
 
-        return NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification scrollNotification) {
-            final metrics = scrollNotification.metrics;
+        return NotificationListener<ScrollUpdateNotification>(
+          onNotification: (ScrollUpdateNotification notification) {
+            final metrics = notification.metrics;
 
             viewModel.saveScreenPosition(metrics.pixels);
 
-            if (metrics.pixels == metrics.maxScrollExtent) {
+            if (metrics.pixels + 200 >= metrics.maxScrollExtent) {
               didLoadMore = _loadMore(viewModel, didLoadMore);
             }
             return false;
           },
-          child: RefreshIndicator(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: data.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (index < data.length) {
-                  return widget.renderItem(data, index);
-                }
-                if (viewModel.isLoading) {
-                  return LoadingItem();
-                }
+          child: SafeArea(
+            top: false,
+            bottom: false,
+            child: Builder(
+              // This Builder is needed to provide a BuildContext that is "inside"
+              // the NestedScrollView, so that sliverOverlapAbsorberHandleFor() can
+              // find the NestedScrollView.
 
-                if (viewModel.isError) {
-                  return LoadingError(
-                    error: viewModel.error,
-                    onClick: viewModel.loadMore,
-                  );
-                }
+              builder: (BuildContext context) {
+                return Scrollbar(
+                  child: CustomScrollView(
+                    shrinkWrap: true,
+                    // The "controller" and "primary" members should be left
+                    // unset, so that the NestedScrollView can control this
+                    // inner scroll view.
+                    // If the "controller" property is set, then this scroll
+                    // view will not be associated with the NestedScrollView.
+                    // The PageStorageKey should be unique to this ScrollView;
+                    // it allows the list to remember its scroll position when
+                    // the tab view is not on the screen.
+                    key: PageStorageKey<String>(viewModel.title),
+                    slivers: <Widget>[
+                      SliverOverlapInjector(
+                        // This is the flip side of the SliverOverlapAbsorber above.
+                        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                            context),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            if (index < data.length) {
+                              return widget.renderItem(data, index);
+                            }
+                            if (viewModel.isLoading) {
+                              return LoadingItem();
+                            }
 
-                if (viewModel.isReachedItem) {
-                  return LoadingReached(
-                    onClick: viewModel.loadMore,
-                  );
-                }
-                if (data.length < 10) {
-                  didLoadMore = _loadMore(viewModel, didLoadMore);
-                }
-                return null;
+                            if (viewModel.isError) {
+                              return LoadingError(
+                                error: viewModel.error,
+                                onClick: viewModel.loadMore,
+                              );
+                            }
+
+                            if (viewModel.isReachedItem) {
+                              return LoadingReached(
+                                onClick: viewModel.loadMore,
+                              );
+                            }
+                            if (data.length < 10) {
+                              didLoadMore = _loadMore(viewModel, didLoadMore);
+                            }
+                            return null;
+                          },
+                          childCount: data.length + 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
               },
             ),
-            onRefresh: viewModel.onRefresh,
           ),
         );
       },
