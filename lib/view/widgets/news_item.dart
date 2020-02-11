@@ -13,9 +13,9 @@ class NewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onClick,
-      child: Card(
+    return Card(
+      child: InkWell(
+        onTap: onClick,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: AspectRatio(
@@ -34,7 +34,7 @@ class NewsItem extends StatelessWidget {
                       child: Icon(Icons.error),
                     ),
                     fit: BoxFit.cover,
-                    imageUrl: model.linkImage,
+                    imageUrl: model.image,
                     height: double.infinity,
                     width: double.infinity,
                   ),
@@ -47,23 +47,42 @@ class NewsItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          model.title,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            model.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        Text(
-                          model.country,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            model.country,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        Text(
-                          '${DateTime.fromMillisecondsSinceEpoch(model.timestamp)}',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            model.image,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            '${DateTime.fromMillisecondsSinceEpoch(
+                                model.timestamp)}',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ],
                     ),

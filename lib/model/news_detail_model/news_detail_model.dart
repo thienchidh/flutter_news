@@ -8,22 +8,27 @@ part 'news_detail_model.g.dart';
 @immutable
 class NewsDetailModel extends NewsModel {
   // TODO
-  NewsDetailModel({title, linkImage, timestamp, country})
-      : super(
-            title: title,
-            linkImage: linkImage,
-            timestamp: timestamp,
-            country: country);
+  final List<String> images;
+
+  NewsDetailModel({
+    @required title,
+    @required image,
+    @required this.images,
+    @required timestamp,
+    @required country,
+  }) : super(
+            title: title, image: image, timestamp: timestamp, country: country);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
           other is NewsDetailModel &&
-          runtimeType == other.runtimeType;
+          runtimeType == other.runtimeType &&
+          images == other.images;
 
   @override
-  int get hashCode => super.hashCode;
+  int get hashCode => super.hashCode ^ images.hashCode;
 
   factory NewsDetailModel.fromJson(Map<String, dynamic> json) {
     return _$NewsDetailModelFromJson(json);

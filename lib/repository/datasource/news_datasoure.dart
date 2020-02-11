@@ -25,42 +25,13 @@ class NewsDataSource implements DataSource<MyResponse<NewsModel>> {
       NewsModel(
         title: "example load more",
         country: "VN",
-        linkImage:
+        image:
             "https://picsum.photos/200/300?timestamp=${DateTime.now().millisecondsSinceEpoch}",
         timestamp: DateTime.now().millisecondsSinceEpoch,
       ),
     ];
 
     final list = List<NewsModel>.unmodifiable([
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
-      ...data,
       ...data,
     ]);
     return NewsResponse(list, config.nextIndex + list.length);

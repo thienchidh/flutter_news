@@ -43,13 +43,13 @@ class _LoadMorePageState<
 
         bool didLoadMore = false;
 
-        return NotificationListener<ScrollUpdateNotification>(
-          onNotification: (ScrollUpdateNotification notification) {
+        return NotificationListener<ScrollNotification>(
+          onNotification: (ScrollNotification notification) {
             final metrics = notification.metrics;
 
             viewModel.saveScreenPosition(metrics.pixels);
 
-            if (metrics.pixels + 200 >= metrics.maxScrollExtent) {
+            if (metrics.pixels + 1000 >= metrics.maxScrollExtent) {
               didLoadMore = _loadMore(viewModel, didLoadMore);
             }
             return false;

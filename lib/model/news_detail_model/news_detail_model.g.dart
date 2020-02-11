@@ -9,7 +9,8 @@ part of 'news_detail_model.dart';
 NewsDetailModel _$NewsDetailModelFromJson(Map<String, dynamic> json) {
   return NewsDetailModel(
     title: json['title'],
-    linkImage: json['linkImage'],
+    image: json['image'],
+    images: (json['images'] as List).map((e) => e as String).toList(),
     timestamp: json['timestamp'],
     country: json['country'],
   );
@@ -18,7 +19,8 @@ NewsDetailModel _$NewsDetailModelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$NewsDetailModelToJson(NewsDetailModel instance) =>
     <String, dynamic>{
       'title': instance.title,
-      'linkImage': instance.linkImage,
+      'image': instance.image,
       'country': instance.country,
       'timestamp': instance.timestamp,
+      'images': instance.images,
     };

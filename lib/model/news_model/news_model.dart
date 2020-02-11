@@ -7,13 +7,13 @@ part 'news_model.g.dart';
 @immutable
 class NewsModel {
   final String title;
-  final String linkImage;
+  final String image;
   final String country;
   final int timestamp;
 
   NewsModel({
     @required this.title,
-    @required this.linkImage,
+    @required this.image,
     @required this.country,
     @required this.timestamp,
   });
@@ -21,19 +21,16 @@ class NewsModel {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NewsModel &&
+          other is NewsModel &&
           runtimeType == other.runtimeType &&
           title == other.title &&
-          linkImage == other.linkImage &&
+          image == other.image &&
           country == other.country &&
           timestamp == other.timestamp;
 
   @override
   int get hashCode =>
-      title.hashCode ^
-      linkImage.hashCode ^
-      country.hashCode ^
-      timestamp.hashCode;
+      title.hashCode ^ image.hashCode ^ country.hashCode ^ timestamp.hashCode;
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
     return _$NewsModelFromJson(json);

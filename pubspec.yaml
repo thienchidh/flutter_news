@@ -36,6 +36,7 @@ dependencies:
   json_annotation: ^3.0.1
   path_provider: ^1.6.0
   synchronized: ^2.2.0
+  carousel_slider: ^1.4.1
 
 dev_dependencies:
   flutter_test:
