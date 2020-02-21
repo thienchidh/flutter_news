@@ -21,17 +21,18 @@ class VideoDataSource implements DataSource<MyResponse<VideoModel>> {
 
     await Future.delayed(Duration(milliseconds: 500));
 
-    final data = <VideoModel>[
-      VideoModel(
-        title: "example load more",
-        linkVideo:
-            "https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4",
-      ),
-    ];
-
     final list = List<VideoModel>.unmodifiable([
-      ...data,
+      ...<VideoModel>[
+        VideoModel(
+          title: "example load more",
+          linkVideo:
+              "https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4",
+          image:
+              "https://picsum.photos/200/300?timestamp=${DateTime.now().millisecondsSinceEpoch}",
+        ),
+      ],
     ]);
+
     return VideoResponse(list, config.nextIndex + list.length);
   }
 }

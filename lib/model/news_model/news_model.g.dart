@@ -15,8 +15,7 @@ NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$NewsModelToJson(NewsModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$NewsModelToJson(NewsModel instance) => <String, dynamic>{
       'title': instance.title,
       'image': instance.image,
       'country': instance.country,

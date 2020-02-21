@@ -21,18 +21,16 @@ class NewsDataSource implements DataSource<MyResponse<NewsModel>> {
 
     await Future.delayed(Duration(milliseconds: 500));
 
-    final data = <NewsModel>[
-      NewsModel(
-        title: "example load more",
-        country: "VN",
-        image:
-            "https://picsum.photos/200/300?timestamp=${DateTime.now().millisecondsSinceEpoch}",
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-      ),
-    ];
-
     final list = List<NewsModel>.unmodifiable([
-      ...data,
+      ...<NewsModel>[
+        NewsModel(
+          title: "example load more",
+          country: "VN",
+          image:
+              "https://picsum.photos/200/300?timestamp=${DateTime.now().millisecondsSinceEpoch}",
+          timestamp: DateTime.now().millisecondsSinceEpoch,
+        ),
+      ],
     ]);
     return NewsResponse(list, config.nextIndex + list.length);
   }

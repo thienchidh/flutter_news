@@ -1,52 +1,40 @@
-import 'package:chewie/chewie.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news/main.dart';
 import 'package:flutter_news/model/video_model/video_model.dart';
-import 'package:video_player/video_player.dart';
 
-class VideoItem extends StatefulWidget {
+class VideoItem extends StatelessWidget {
   final VideoModel model;
 
   const VideoItem({Key key, @required this.model}) : super(key: key);
 
   @override
-  _VideoItemState createState() => _VideoItemState();
-}
-
-class _VideoItemState extends State<VideoItem> {
-  ChewieController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = ChewieController(
-      videoPlayerController:
-          VideoPlayerController.network(widget.model.linkVideo),
-      autoInitialize: true,
-      aspectRatio: 16 / 9,
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: <Widget>[
-          Text(
-            widget.model.title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+      child: InkWell(
+        onTap: () {
+          // TODO implements open video
+          Navigator.pushNamed(
+            context,
+            RoutesName.VIDEO_DETAIL_PAGE,
+            arguments: model,
+          );
+        },
+        child: AspectRatio(
+          aspectRatio: 16 / 9,
+          child: CachedNetworkImage(
+            placeholder: (context, url) => Center(
+              child: CircularProgressIndicator(),
             ),
+            errorWidget: (context, url, error) => Center(
+              child: Icon(Icons.error),
+            ),
+            fit: BoxFit.cover,
+            imageUrl: model.image,
+            height: double.infinity,
+            width: double.infinity,
           ),
-          Chewie(
-            controller: _controller,
-          ),
-        ],
+        ),
       ),
     );
   }

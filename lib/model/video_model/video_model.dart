@@ -7,23 +7,26 @@ part 'video_model.g.dart';
 @immutable
 class VideoModel {
   final String title;
+  final String image;
   final String linkVideo;
 
   VideoModel({
     @required this.title,
+    @required this.image,
     @required this.linkVideo,
-  });
+  }) : assert(image != null);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is VideoModel &&
+          other is VideoModel &&
           runtimeType == other.runtimeType &&
           title == other.title &&
+          image == other.image &&
           linkVideo == other.linkVideo;
 
   @override
-  int get hashCode => title.hashCode ^ linkVideo.hashCode;
+  int get hashCode => title.hashCode ^ image.hashCode ^ linkVideo.hashCode;
 
   factory VideoModel.fromJson(Map<String, dynamic> json) {
     return _$VideoModelFromJson(json);
